@@ -10,18 +10,25 @@
 
 {
   let zero: 0 = 0;
-  zero = -0.000001;
+  // zero의 타입이 0 으로 지정 되었으므로 0 이외의 값은 올 수 없다
+  // zero = -0.000001;
 
-  let bookIcon: 'book' = 'book';
-  bookIcon = '북';
+  let bookIcon: "book" = "book";
+  // bookIcon = "북"; -> error
 }
 
 // 하지만 리터럴 + 유니언을 조합하면 매우 유용한 타입 옵션을 관리할 수 있습니다. 😃
 
 {
-  type IconIds = 'book' | 'send' | 'check-mark' | 'close-eye';
+  type IconIds = "book" | "send" | "check-mark" | "close-eye" | "heart-solid";
 
-  let iconType: IconIds = 'send';
-  iconType = 'close-eye';
-  iconType = 'books';
+  let iconType: IconIds = "send";
+  iconType = "close-eye";
+  iconType = "heart-solid";
+  // IconIds에는 books라는 타입이 존재하지 않으므로 에러 발생
+  // iconType = "books";
+
+  type Gender = "남성" | "여성";
+
+  let myGender: Gender = "남성";
 }
