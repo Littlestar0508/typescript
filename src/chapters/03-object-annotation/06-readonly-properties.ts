@@ -9,7 +9,7 @@
 
 {
   type Member = {
-    id: string;
+    readonly id: string;
     name: string;
     age: number;
     job?: string;
@@ -17,20 +17,22 @@
   };
 
   const guest: Member = {
-    id: 'guest-101',
-    name: '이철용',
+    id: "guest-101",
+    name: "이철용",
     age: 17,
     isAdmin: false,
   };
 
-  guest.id = 'administrator-ze82Kd';
+  // id는 readonly로 지정되었으므로 변경이 불가능하다
+  // guest.id = "administrator-ze82Kd";
 
   const administrator: Member = {
-    id: 'administrator-ze82Kd',
-    name: '관리자',
+    id: "administrator-ze82Kd",
+    name: "관리자",
     age: 56,
     isAdmin: true,
   };
 
-  administrator.id = 'guest-101';
+  // id는 readonly로 지정되었으므로 변경이 불가능하다
+  // administrator.id = "guest-101";
 }
