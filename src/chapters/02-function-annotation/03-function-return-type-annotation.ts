@@ -9,7 +9,7 @@
 
 {
   // fibonacci 함수의 반환 값 타입을 지정해봅니다.
-  const fibonacci = (n: number) => {
+  const fibonacci = (n: number): number => {
     if (n < 1) return 0;
     if (n < 3) return 1;
     return fibonacci(n - 2) + fibonacci(n - 1);
@@ -17,13 +17,15 @@
 
   let fibo16 = fibonacci(16);
 
-  fibo16();
-  fibo16.tolowerCase();
+  // fibo16(); -> callable하지 않아서 오류를 유발한다
+  // fibo16.tolowerCase(); -> string타입이 아니라 tolowerCase를 사용할 수 없다 or method를 포함하지 않는다
 }
 
 {
-  function multiply(n: number, m: number) {
-    n * m;
+  function multiply(n: number, m: number): number {
+    return n * m;
+
+    // return undefined;
   }
 
   // 이런! 오류가 발생했네요.
