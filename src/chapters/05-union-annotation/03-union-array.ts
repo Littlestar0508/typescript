@@ -9,7 +9,7 @@
 // 오류가 더 이상 발생하지 않으면? 이어서 Array<> 문법으로 대체해봅니다.
 
 {
-  type MultiDimensionalTypedArray = string[][];
+  type MultiDimensionalTypedArray = (string | number)[][]; // Array<Array<string | number>>
 
   type User = {
     readonly name: string;
@@ -19,24 +19,26 @@
   };
 
   const whangSujin: User = {
-    name: '박성구',
-    gender: '남성',
-    job: '인쇄 기사',
+    name: "박성구",
+    gender: "남성",
+    job: "인쇄 기사",
     age: 26,
   };
 
-  const whangSujinIterator: MultiDimensionalTypedArray =
-    Object.entries(whangSujin);
+  const whangSujinIterator: MultiDimensionalTypedArray = Object.entries(whangSujin);
 }
 
 // 아래 작성된 에너테이션과 먼저 작성한 에너테이션은 어떤 차이점이 있을까요?
 
 {
-  type CountDown = string[] | number[];
+  // 문자로만 이루어진 혹은 숫자로만 이루어진 배열을 나타냄
+  // type CountDown = string[] | number[];
 
-  let countdown: CountDown = ['three', 'two', 'one'];
+  type CountDown = (string | number)[];
+
+  let countdown: CountDown = ["three", "two", "one"];
   countdown = [3, 2, 1];
-  countdown = [3, 'two', 'one'];
+  countdown = [3, "two", "one"];
 }
 
 // coords에 적용할 타입을 선언해봅니다.
@@ -45,8 +47,10 @@
 {
   type Point = { x: number; y: number };
   type Location = { rat: number; lon: number };
+  type Coords = Point | Location;
 
-  const coords = [
+  // Array<Coords>
+  const coords: Coords[] = [
     { x: 8, y: -12 },
     { rat: 92.382, lon: -102.32 },
     { x: -27, y: 10 },
