@@ -8,15 +8,18 @@
 // 타입 단언, 익스클레메이션 마크 등을 사용해 TypeScript가 타입을 알 수 없어 표시한 오류를 해결합니다.
 
 {
-  const body = document.querySelector('body');
-  const input = body.querySelector('input');
+  const body = document.querySelector("body") as HTMLBodyElement;
+  const input = body.querySelector("input");
 
-  body.addEventListener('click', (e) => {
-    console.log('clicked body element');
+  body.addEventListener("click", (e: MouseEvent) => {
+    e.preventDefault();
+    console.log("clicked body element");
   });
 
-  input.addEventListener('input', () => {
-    let value = input.value;
-    console.log(value);
-  });
+  if (input) {
+    input.addEventListener("input", (e) => {
+      let value = input!.value;
+      console.log(value);
+    });
+  }
 }
