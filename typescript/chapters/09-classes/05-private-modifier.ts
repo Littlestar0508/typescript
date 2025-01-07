@@ -12,7 +12,7 @@
   class Player {
     public readonly nickname: string;
     public readonly role: string;
-    public score: number = 0;
+    private score: number = 0;
 
     constructor(nickname: string, role: string) {
       this.nickname = nickname;
@@ -24,7 +24,7 @@
       this.score += 100;
     }
 
-    public scoreUp(point: number): void {
+    private scoreUp(point: number): void {
       this.score += point;
     }
 
@@ -33,8 +33,8 @@
     }
   }
 
-  const yamoo9 = new Player('yamoo9', '멘토');
+  const yamoo9 = new Player("yamoo9", "멘토");
 
   yamoo9.boostScoreUp();
-  console.log(yamoo9.score);
+  // console.log(yamoo9.score); -> score가 private 처리가 되었으므로 접근이 불가능하다
 }
