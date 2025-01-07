@@ -7,10 +7,7 @@
 // --------------------------------------------------------------------------
 
 {
-  function isEqualityValue(
-    value1: string | number,
-    value2: string | boolean
-  ): boolean {
+  function isEqualityValue(value1: string | number, value2: string | boolean): boolean {
     if (value1 === value2) {
       // value1, value2 모두 string 타입
       console.log(value1.toLowerCase());
@@ -25,6 +22,6 @@
     }
   }
 
-  isEqualityValue(101, '101');
-  isEqualityValue('EQUALITY', 'EQUALITY');
+  isEqualityValue(101, "101");
+  isEqualityValue("EQUALITY", "EQUALITY");
 }
