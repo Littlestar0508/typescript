@@ -10,25 +10,25 @@
 
 {
   class Player {
-    readonly nickname: string;
-    readonly role: string;
-    score: number = 0;
+    public nickname: string;
+    public role: string;
+    public score: number = 0;
 
     constructor(nickname: string, role: string) {
       this.nickname = nickname;
       this.role = role;
     }
 
-    scoreUp(point: number): void {
+    public scoreUp(point: number): void {
       this.score += point;
     }
 
-    scoreDown(point: number): void {
+    public scoreDown(point: number): void {
       this.score -= point;
     }
   }
 
-  const yamoo9 = new Player('yamoo9', '멘토');
+  const yamoo9 = new Player("yamoo9", "멘토");
 
   yamoo9.scoreUp(20);
   console.log(yamoo9.score);
