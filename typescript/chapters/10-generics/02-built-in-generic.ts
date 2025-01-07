@@ -15,6 +15,7 @@
   // - 익스클레메이션(Exclamation)
   // - 타입 단언(Type Assertion)
   // - 제네릭(Generic)
+  // 빌트인 제네릭 : querySelector<E extends Element = Element>(selectors: string): E | null; -> 따라서 null의 가능성이 존재한다
   const inputEl = document.querySelector<HTMLInputElement>("#username");
 
   // 🧐 TypeScript ...
