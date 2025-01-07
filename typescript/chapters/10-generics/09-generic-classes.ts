@@ -34,11 +34,11 @@
   class Playlist<T extends RequiredId> {
     constructor(private list: T[] = []) {}
 
-    add(newItem: T) {
+    add(newItem: T): void {
       this.list.push(newItem);
     }
 
-    remove(removeItemId: string) {
+    remove(removeItemId: string): void {
       this.list = this.list.filter((item) => item.id !== removeItemId);
     }
   }
