@@ -9,19 +9,19 @@
 // TypeScript가 정확히 어떤 이벤트 객체 임을 알 수 있도록 타입을 지정해봅니다.
 
 {
-  const body = document.querySelector('body')!;
-  const input = body.querySelector('input')!;
+  const body = document.querySelector("body")!;
+  const input = body.querySelector("input");
 
-  const handleClickBody = (e) => {
+  const handleClickBody = (e: MouseEvent) => {
     console.log(e.target);
   };
 
-  body.addEventListener('click', handleClickBody);
+  body.addEventListener("click", handleClickBody);
 
-  const handleInput = (e) => {
-    let value = e.target.value;
+  const handleInput = (e: Event) => {
+    let value = (e.target as HTMLInputElement).value;
     console.log(value);
   };
 
-  input.addEventListener('input', handleInput);
+  input?.addEventListener("input", handleInput);
 }
