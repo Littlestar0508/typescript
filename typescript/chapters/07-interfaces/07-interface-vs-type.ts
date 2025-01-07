@@ -6,16 +6,16 @@
 // ------------------------------------------------------------------------------
 
 // 새로운 프로퍼티 추가
+// 타입은 불가능
+// {
+//   type Dog = {
+//     kind: string;
+//   };
 
-{
-  type Dog = {
-    kind: string;
-  };
-
-  type Dog = {
-    age: number;
-  };
-}
+//   type Dog = {
+//     age: number;
+//   };
+// }
 
 {
   interface Dog {
@@ -35,6 +35,7 @@
     age: number;
   };
 
+  // type 확장
   type SuperDog = Dog & {
     hasSuperPower: boolean;
   };
