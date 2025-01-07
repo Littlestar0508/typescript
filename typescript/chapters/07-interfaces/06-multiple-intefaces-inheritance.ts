@@ -14,11 +14,12 @@
     hasWheel: boolean;
   }
 
-  interface VerticalTypeMouse {
-    direction: 'Vertial';
+  interface VerticalTypeMouse extends Mouse {
+    direction: "Vertial";
   }
 
-  interface SpecialMouse {
+  interface SpecialMouse extends VerticalTypeMouse, Mouse {
+    // 다중 상속
     releaseDate: number;
   }
 
@@ -26,7 +27,7 @@
     x: 100,
     y: 120,
     hasWheel: true,
-    direction: 'Vertial',
+    direction: "Vertial",
     releaseDate: 2022,
   };
 
@@ -46,20 +47,20 @@
     email: string;
   }
 
-  interface Developer {
+  interface Developer extends Human, Employee {
     role: string;
     career: number;
     programmingLanguages: string[];
   }
 
   const teamLeader: Developer = {
-    name: '김상호',
+    name: "김상호",
     age: 51,
-    id: 'employee-dicos',
-    email: 'kimsh@employee.io',
-    role: '팀장',
+    id: "employee-dicos",
+    email: "kimsh@employee.io",
+    role: "팀장",
     career: 16,
-    programmingLanguages: ['TypeScript', 'JavaScript', 'Go', 'Python'],
+    programmingLanguages: ["TypeScript", "JavaScript", "Go", "Python"],
   };
 
   console.log(teamLeader.programmingLanguages);
