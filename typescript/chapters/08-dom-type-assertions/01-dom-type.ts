@@ -10,9 +10,12 @@
 // body의 타입이 객체인지 여부에 따라 조건 처리되도록 구현하여 TypeScript가 오류를 표시하지 않도록 합니다.
 
 {
-  const body = document.querySelector('body');
+  const body = document.querySelector("body") as HTMLBodyElement; // <body>가 존재하는 것을 알고 있음
 
-  body.addEventListener('click', (e) => {
-    console.log('clicked body element');
+  // body 변수 참조 값이 null이 아닌 경우에 아래 코드 실행
+  // if (body !== null) {
+  body.addEventListener("click", (e) => {
+    console.log("clicked body element");
   });
+  // }
 }
