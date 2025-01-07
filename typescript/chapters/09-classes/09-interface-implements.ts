@@ -8,6 +8,8 @@
 // Cap 클래스는 Colorful 인터페이스를 구현해야 합니다.
 // Print 클래스는 Colorful, Printable 인터페이스를 모두 구현해야 합니다.
 
+// 웹 표준을 정의하는 곳은 W3C이다
+
 {
   interface Colorful {
     color: string;
@@ -18,7 +20,13 @@
     print(): void;
   }
 
-  class Cap {}
+  // 브라우저 벤더(제조사) 구현
+  class Cap implements Colorful {
+    constructor(public color: string) {}
+  }
 
-  class Printer {}
+  class Printer implements Colorful, Printable {
+    constructor(public color: string, public isPortable: boolean) {}
+    print(): void {}
+  }
 }
