@@ -31,7 +31,20 @@ app.use(express.static(resolve(__dirname, "../public")));
 // Routing
 
 // '/' handler : handlers/entry.ts
+
+// GET
 app.get("/", entryHandler);
+
+// POST
+app.post("/", (req, res) => {
+  // 사용자의 요청 URL
+  console.log(req.url);
+
+  // 서버 -> 클라이언트 응답
+  res.status(201 /* CREATED */).send({
+    message: "POST 요청이 홈페이지로부터 주어졌습니다",
+  });
+});
 
 app.listen(PORT, HOSTNAME, () => {
   console.log(MESSAGE);
