@@ -13,11 +13,9 @@
 
 import "dotenv/config";
 import express from "express";
-import type { Express } from "express";
-import entryHandler from "./handlers/entry";
-import greetingMessage from "./middlewares/greetingMiddleware";
+import type { Express, Request, Response } from "express";
 import { resolve } from "node:path";
-import type User from "./types/user";
+import User from "./types/user";
 
 const app: Express = express(); // new Application()과 같은 맥락
 
@@ -26,8 +24,9 @@ const PORT = Number(process.env.PORT) ?? 4000;
 const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
 
 // Middleware
-app.use(greetingMessage);
+// app.use(greetingMessage);
 app.use(express.static(resolve(__dirname, "../public")));
+app.use(express.json());
 
 // Routing
 
@@ -49,23 +48,30 @@ app.use(express.static(resolve(__dirname, "../public")));
 
 /* Users API ---------------------------------------------------------------- */
 
-const dummyUser: User = {
-  id: 1,
-  name: "노종국",
-  age: 28,
-  gender: "남성",
-};
+// const dummyUser: User = {
+//   id: 1,
+//   name: "노종국",
+//   age: 28,
+//   gender: "남성",
+// };
 
-const dummyUserList: User[] = [dummyUser];
+// const dummyUserList: User[] = [dummyUser];
 
 // CREATE
 // `POST /api/users`
+app.post("/api/users", (req: Request<{}, {}, User>, res: Response) => {
+  // 클라이언트 요청(JSON)
+  console.log(req.body.gender);
+
+  // 클라이언트 응답
+  res.status(201).json({});
+});
 
 // READ
 // `GET /api/users`
 app.get("/api/users", (req, res) => {
   // Response (to Client)
-  res.status(200).json(dummyUserList);
+  // res.status(200).json(dummyUserList);
 });
 
 // `GET /api/users/:id`
