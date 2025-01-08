@@ -5,4 +5,6 @@ interface User {
   gender: string;
 }
 
+export type RequestUser = Omit<User, "id">;
+
 export default User;
