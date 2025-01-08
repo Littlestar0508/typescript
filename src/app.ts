@@ -12,16 +12,16 @@
 // --------------------------------------------------------------------------
 
 import express from "express";
+import type { Express, NextFunction, Request, Response } from "express";
 
-const app = express(); // new Application()과 같은 맥락
-
-console.log(typeof app);
+const app: Express = express(); // new Application()과 같은 맥락
 
 const HOSTNAME = "localhost";
 const PORT = 5000;
 const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
 
-app.get("/", (req, res, next) => {
+// Routing
+app.get("/", (req: Request, res: Response, next: NextFunction) => {
   // 서버 -> 클라이언트 응답
   res.send("<h1>Hello Express.js & TypeScript</h1>");
 });
