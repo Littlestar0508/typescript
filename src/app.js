@@ -18,7 +18,7 @@ const app = express(); // new Application()과 같은 맥락
 console.log(typeof app);
 
 const HOSTNAME = "localhost";
-const PORT = 4000;
+const PORT = 5000;
 const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
 
 app.get("/", (req, res, next) => {

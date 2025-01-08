@@ -1,8 +1,8 @@
 {
   "name": "typescript-essentials",
   "scripts": {
-    "start": "node ./server/app.node.js",
-    "dev": "nodemon ./server/app.node.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.14",
