@@ -17,6 +17,7 @@ import type { Express, Request, Response } from "express";
 import { resolve } from "node:path";
 import User, { RequestUser } from "./types/user";
 import { readFile, writeFile } from "node:fs/promises";
+import { readUsers, writeUsers } from "./lib/users";
 
 const app: Express = express(); // new Application()과 같은 맥락
 
@@ -65,23 +66,36 @@ app.post("/api/users", async (req: Request<{}, {}, RequestUser>, res: Response) 
   // console.log(req.body);
 
   // 서버에서 프로그래밍
-  // data/users.json 파일 읽기
+  // 1. data/users.json 파일 읽기
   // fsPromises.readFile();
-  const usersString = await readFile(resolve(__dirname, "./data/users.json"), {
-    encoding: "utf-8",
-  });
+  const users = await readUsers();
 
-  // JSON format string - [JSON.parse(jsonString)] - Javascript Object
-  const userJSON: User[] = JSON.parse(usersString);
+  // 새롭게 생성될 사용자(User) 객체
+  // const newId = crypto.randomUUID();
+  const newId = users.length + 1;
 
-  // data/users.json 파일에 쓰기
-  // fsPromises.writeFile()
+  const newUser = {
+    id: newId,
+    ...req.body,
+  };
+
+  // 2. data/users.json 파일에 쓰기
+  // 기존의 Users 배열에 새 User를 추가
+  users.push(newUser); // [...] => [JSON.stringify()] =>"[...]"
+  // 파일에 쓰기
 
   // 클라이언트 응답
-  // Success case
-  res.status(201).json({});
+  try {
+    await writeUsers(newUser);
 
-  // Failure case
+    // Success case
+    res.status(201).json(newUser);
+  } catch (error) {
+    // Failure case
+    res.status(404).json({
+      message: (error as Error).message,
+    });
+  }
 });
 
 // READ
