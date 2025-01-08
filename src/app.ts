@@ -11,13 +11,14 @@
 //
 // --------------------------------------------------------------------------
 
+import "dotenv/config";
 import express from "express";
 import type { Express, NextFunction, Request, Response } from "express";
 
 const app: Express = express(); // new Application()과 같은 맥락
 
 const HOSTNAME = "localhost";
-const PORT = 5000;
+const PORT = Number(process.env.PORT) ?? 4000;
 const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
 
 // Routing
