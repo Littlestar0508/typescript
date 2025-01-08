@@ -10,3 +10,22 @@
 // 여러 정적 에셋 디렉토리를 사용하려면 express.static 미들웨어 함수를 여러 번 호출합니다.
 //
 // --------------------------------------------------------------------------
+
+const express = require("express");
+
+const app = express(); // new Application()과 같은 맥락
+
+console.log(typeof app);
+
+const HOSTNAME = "localhost";
+const PORT = 4000;
+const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
+
+app.get("/", (req, res, next) => {
+  // 서버 -> 클라이언트 응답
+  res.send("<h1>Hello Express.js & TypeScript</h1>");
+});
+
+app.listen(PORT, HOSTNAME, () => {
+  console.log(MESSAGE);
+});
