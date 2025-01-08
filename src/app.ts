@@ -17,6 +17,7 @@ import type { Express } from "express";
 import entryHandler from "./handlers/entry";
 import greetingMessage from "./middlewares/greetingMiddleware";
 import { resolve } from "node:path";
+import type User from "./types/user";
 
 const app: Express = express(); // new Application()과 같은 맥락
 
@@ -45,6 +46,38 @@ app.use(express.static(resolve(__dirname, "../public")));
 //     message: "POST 요청이 홈페이지로부터 주어졌습니다",
 //   });
 // });
+
+/* Users API ---------------------------------------------------------------- */
+
+const dummyUser: User = {
+  id: 1,
+  name: "노종국",
+  age: 28,
+  gender: "남성",
+};
+
+const dummyUserList: User[] = [dummyUser];
+
+// CREATE
+// `POST /api/users`
+
+// READ
+// `GET /api/users`
+app.get("/api/users", (req, res) => {
+  // Response (to Client)
+  res.status(200).json(dummyUserList);
+});
+
+// `GET /api/users/:id`
+
+// UPDATE
+// `PUT /api/users/:id`
+// `PATCH /api/users/:id`
+
+// DELETE
+// `DELETE /api/users/:id`
+
+// LISTENING
 
 app.listen(PORT, HOSTNAME, () => {
   console.log(MESSAGE);
