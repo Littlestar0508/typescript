@@ -12,10 +12,9 @@
 // --------------------------------------------------------------------------
 
 import "dotenv/config";
-import express, { response } from "express";
-import type { Express, NextFunction, Request, Response } from "express";
-import { readFile } from "node:fs/promises";
-import { resolve } from "node:path";
+import express from "express";
+import type { Express } from "express";
+import entryHandler from "./handlers/entry";
 
 const app: Express = express(); // new Application()과 같은 맥락
 
@@ -24,22 +23,9 @@ const PORT = Number(process.env.PORT) ?? 4000;
 const MESSAGE = `http://${HOSTNAME}:${PORT} 웹 서비스 구동`;
 
 // Routing
-app.get("/", async (req: Request, res: Response, next: NextFunction) => {
-  // 서버 애플리케이션의 로컬 저장소 위치의 파일 비동기 방식으로 읽기
-  // fsPromises.readFile(path,options?)
-  // __dirname === new URL('./' , import.meta.url)
-  try {
-    const entryFilePath = resolve(__dirname, "./index.html");
-    const entryFileCode = await readFile(entryFilePath, { encoding: "utf-8" });
 
-    // 서버 -> 클라이언트 응답
-    res.status(200).send(entryFileCode);
-  } catch (error: unknown) {
-    response.status(500 /* Internal Server Error */).send({
-      message: (error as Error).message,
-    });
-  }
-});
+// '/' handler : handlers/entry.ts
+app.get("/", entryHandler);
 
 app.listen(PORT, HOSTNAME, () => {
   console.log(MESSAGE);
