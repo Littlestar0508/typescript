@@ -100,7 +100,17 @@ app.post("/api/users", async (req: Request<{}, {}, RequestUser>, res: Response) 
 
 // READ
 // `GET /api/users`
-app.get("/api/users", (req, res) => {
+app.get("/api/users", async (req, res) => {
+  try {
+    const users = await readUsers();
+    // throw new Error("oops");
+
+    res.status(200).json(users);
+  } catch (error: unknown) {
+    res.status(500).json({
+      message: "알 수 없는 오류가 발생했습니다! 🎃",
+    });
+  }
   // Response (to Client)
   // res.status(200).json(dummyUserList);
 });
